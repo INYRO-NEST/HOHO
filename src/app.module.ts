@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path'
 import { ArticleModule } from './domain/article/article.module';
+import { AuthModule } from './auth/auth.module';
 
 console.log(`.env.${process.env.NODE_ENV}`);
 
@@ -24,16 +25,13 @@ console.log(`.env.${process.env.NODE_ENV}`);
       database: configService.get('DB_NAME'),
       username: configService.get('DB_USER'),
       password: configService.get('DB_PASSWORD'),
-      entities: [
-        path.join(__dirname, 'src/entities/**/*.entity.ts'),
-        path.join(__dirname, 'src/entities/**/*.entity.js'),
-      ],
+      entities: [path.join(__dirname, 'entities/**/*.entity.{js, ts}')],
       synchronize: false,
       logging: true,
       timezone: 'local',
     })
   }),
-  UserModule, ArticleModule
+  UserModule, ArticleModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

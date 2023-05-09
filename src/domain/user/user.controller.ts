@@ -17,6 +17,7 @@ export class UserController {
         const password = body.password;
         console.log(email);
         console.log(password);
-        await this.userService.register(email, password);
+        const user = await this.userService.register(email, password);
+        return user
     }
 }
