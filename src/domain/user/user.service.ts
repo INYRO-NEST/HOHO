@@ -12,10 +12,7 @@ export class UserService {
     ) {}
 
     async getUserPage() {
-        return { user : {
-            name : "hansu",
-            age : 20,
-        }};
+        return this.userRepository.find();
     }
 
     async register(email: string, password: string) {

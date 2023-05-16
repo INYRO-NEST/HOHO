@@ -1,4 +1,4 @@
-import { CreateDateColumn, PrimaryGeneratedColumn } from "typeorm";
+import { CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 export class CommonBigPKEntity {
     @PrimaryGeneratedColumn({ type: 'bigint' })
@@ -7,9 +7,9 @@ export class CommonBigPKEntity {
     @CreateDateColumn ({ type: 'timestamp'})
     createdAt: Date;
 
-    @CreateDateColumn ({ type: 'timestamp', nullable: true})
+    @UpdateDateColumn ({ type: 'timestamp', nullable: true})
     updatedAt: Date | null;
 
-    @CreateDateColumn ({ type: 'timestamp', nullable: true})
+    @DeleteDateColumn ({ type: 'timestamp', nullable: true})
     deletedAt: Date | null;
 }

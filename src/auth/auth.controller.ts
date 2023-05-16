@@ -13,6 +13,6 @@ export class AuthController {
     async logIn(@Req() req) {
         const user = req.user;
 
-        await this.authService.logIn(user);
+        return await this.authService.logIn(user);
     }
 }

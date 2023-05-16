@@ -1,14 +1,17 @@
-import { Controller, Get } from "@nestjs/common";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ArticleService } from "./article.service";
+import { JwtGuard } from "src/auth/guards/jwt.guard";
+import { User } from "src/decorators/user.decorator";
 
 
-@Controller('article')
+@Controller('articles')
 export class ArticleController {
     constructor (private readonly articleService:ArticleService) {}
 
-    @Get()
-    async getArticlePage() {
-        const res = await this.articleService.getArticlePage();
+    @UseGuards(JwtGuard)
+    @Post()
+    async createArticle(@Body() body, @User() user) {
+        const res = await this.articleService.createArticle(body.title, body.content, user.id);
         return res;
     }
 }
