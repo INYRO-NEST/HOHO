@@ -15,15 +15,15 @@ export class AuthService {
     ) {}
 
     
-    async validateUser(email: string, password: string): Promise<any> {
+    async validateUser(email: string, password: string) {
         const user = await this.userRepository.findOne({
             where: { email: email }
         });
 
-        const hashedPassword = user.password;
-
+        const hashedPassword = user?.password;
+        
         if (!user) {
-            throw new BadRequestException('이메일이 잘못되었습니다.');
+            throw new BadRequestException('이메일이 잘못되었습니다.' + email);
         }
 
         const isPasswordMatch = await compare (password, hashedPassword);

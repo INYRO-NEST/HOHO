@@ -19,4 +19,13 @@ export class ArticleService {
         });
         return article;
     }
+
+    async getArticle(id: string) {
+        const article = await this.articleRepository.findOne({
+            where: {
+                id: id,
+            }
+        });
+        return article;
+    }
 }

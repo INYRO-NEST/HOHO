@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path'
 import { ArticleModule } from './domain/article/article.module';
 import { AuthModule } from './auth/auth.module';
+import { CommentModule } from './domain/comment/comment.module';
 
 console.log(`.env.${process.env.NODE_ENV}`);
 
@@ -31,7 +32,7 @@ console.log(`.env.${process.env.NODE_ENV}`);
       timezone: 'local',
     })
   }),
-  UserModule, ArticleModule, AuthModule
+  UserModule, ArticleModule, AuthModule, CommentModule
   ],
   controllers: [AppController],
   providers: [AppService],
